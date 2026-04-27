@@ -7,7 +7,7 @@
   * `POST /mean` to compute the mean of a list of numbers
   * `POST /stddev` to compute the population standard deviation
   * `GET /health` for service health checks
-* Pydantic*based request validation with custom validation for non*empty lists
+* Pydantic-based request validation with custom validation for non-empty lists
 * Structured logging
 * Rounding of responses to 3 decimal places
 
