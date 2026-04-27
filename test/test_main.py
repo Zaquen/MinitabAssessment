@@ -5,6 +5,7 @@ Objectives:
 - Test accuracy of endpoints
 - Test error handling
 """
+
 from fastapi.testclient import TestClient
 from app.main import app
 
@@ -28,6 +29,7 @@ def test_stddev_valid():
     assert response.status_code == 200
     # population stddev of [1,2,3,4] = ~1.118
     assert response.json() == {"stddev": 1.118}
+
 
 def test_rounding():
     response = client.post("/mean", json={"numbers": [1, 2, 2]})

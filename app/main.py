@@ -15,15 +15,16 @@ from typing import List
 
 # Setup Items
 logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] [%(name)s] %(message)s"
+    level=logging.INFO, format="%(asctime)s [%(levelname)s] [%(name)s] %(message)s"
 )
 
 logger = logging.getLogger(__name__)
 app = FastAPI()
 
+
 class NumbersRequest(BaseModel):
     """Pydantic Data Validation for a list of floating point numbers"""
+
     numbers: List[float]
 
     @field_validator("numbers")
@@ -33,7 +34,7 @@ class NumbersRequest(BaseModel):
         if not v:
             logger.error("Empty list provided in request")
             raise ValueError("List must not be empty")
-        
+
         return v
 
 
@@ -49,7 +50,6 @@ def mean(request: NumbersRequest):
 
     nums = request.numbers
     logger.debug(f"Received {len(nums)} numbers")
-
 
     mean_val = round(get_mean(nums), 3)
     logger.debug(f"Mean Value, rounded: {mean_val}")
@@ -80,11 +80,11 @@ def stddev(request: NumbersRequest):
 
 @app.get("/health")
 def health():
-    """Health check endpoint"""    
+    """Health check endpoint"""
     return {"status": "ok"}
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import os
     import uvicorn
 
